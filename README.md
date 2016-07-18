@@ -1,14 +1,18 @@
 # MessengerTest
 Android系统中使用Messenger进行进程间通信
 
+<img src="https://github.com/woshishenxian/MessengerTest/blob/master/pic/pic1.png" width="70%"></img>
+
+                                      工作原理
+
 我们使用Handler都是在一个进程中使用的，如何跨进程使用Handler？
 
 其实这个问题不难解决，自己动手对binder进行一些封装就可以简单实现。但是当你看系统源码，就会发现，其实这些android都已经为我们做好了。
 
 使用android系统的android.os.Messenger可以很方便的跨进程使用Handler。下面是示例程序。
 
-private static class MessengerHandler extends Handler{
-
+       private static class MessengerHandler extends Handler{
+       
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -35,7 +39,7 @@ private static class MessengerHandler extends Handler{
 
 然后是客户端
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
 
 	private static final String TAG = "MessengerActivity";
 
