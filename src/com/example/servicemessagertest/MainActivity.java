@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 			try {
 				mService.send(msg);
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
