@@ -53,12 +53,17 @@ public class BookManagerActivity extends AppCompatActivity {
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
 			mRemoteBookManager = null;
+			// Binder意外死亡后，重新连接服务
+			//方法二：onServiceDisconnected 重连
+			
 		}
 
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			IBookManager bookManager = IBookManager.Stub.asInterface(service);
 			try {
+//				方法一：绑定死亡代理
+//				service.linkToDeath(mDeathRecipient, 0);
 				mRemoteBookManager = bookManager;
 				List<Book> list = bookManager.getBookList();
 				Log.i(TAG, "query book list: " + list.toString());
@@ -73,12 +78,31 @@ public class BookManagerActivity extends AppCompatActivity {
 			}
 		}
 	};
+	/**
+	 * Binder意外死亡后，重新连接服务
+	 * 方法一：
+	 * 设置死亡代理
+	 */
+	private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
+		
+		@Override
+		public void binderDied() {
+			if(mRemoteBookManager ==null){
+				return;
+			}
+			mRemoteBookManager.asBinder().unlinkToDeath(mDeathRecipient, 0);
+			mRemoteBookManager = null;
+			//binder销毁后，重新绑定远程service
+			Intent intent = new Intent(BookManagerActivity.this, BookManagerService.class);
+			bindService(intent, connection, Context.BIND_AUTO_CREATE);
+		}
+	};
 
 	private IOnNewBookArrivedListener mIOnNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
 
 		@Override
 		public void onNewBookArrived(Book newBook) throws RemoteException {
-			mHandler.obtainMessage(MESSAGE_NEW_BOOK_ARRIVED, newBook)
+			mHandler.obtainMessage(MESSAGE_NEW_BOOK_ARRIVED, newBook) 
 					.sendToTarget();
 		}
 	};
