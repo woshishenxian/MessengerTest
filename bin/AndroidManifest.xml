@@ -3,9 +3,11 @@
     package="com.example.servicemessagertest"
     android:versionCode="1"
     android:versionName="1.0" >
-    
-    <permission android:name="com.example.servicemessagertest.premission.ACCESS_BOOK_SERVICE"
-        android:protectionLevel="normal"></permission>
+
+    <permission
+        android:name="com.example.servicemessagertest.premission.ACCESS_BOOK_SERVICE"
+        android:protectionLevel="normal" >
+    </permission>
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -44,6 +46,17 @@
             android:name="com.example.servicemessagertest.aidl.BookManagerActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.example.servicemessagertest.contentprovider.ProviderActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <provider
+            android:name="com.example.servicemessagertest.contentprovider.BookProvider"
+            android:permission="com.example.servicemessagertest.PROVIDER" 
+            android:authorities="com.example.servicemessagertest.contentprovider.BookProvider"
+            android:process=":provider">
+        </provider>
     </application>
 
 </manifest>
