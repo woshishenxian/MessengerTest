@@ -1,4 +1,4 @@
-package com.example.servicemessagertest;
+package com.example.servicemessagertest.messenger;
 
 import android.app.Service;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.example.servicemessagertest;
+package com.example.servicemessagertest.messenger;
 
 public class MyConstants {
 	public static final int MSG_FROM_CLIENT = 1;
