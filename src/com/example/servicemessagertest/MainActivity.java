@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.servicemessagertest.aidl.BookManagerActivity;
 import com.example.servicemessagertest.messenger.MessengerActivity;
+import com.example.servicemessagertest.socket.TcpClientActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 	}
 	public void turnToBookManagerActivity(View view){
 		startActivity(new Intent(this, BookManagerActivity.class));
+	}
+	public void turnToBookTcpClientActivity(View view){
+		startActivity(new Intent(this, TcpClientActivity.class));
 	}
 
 }

@@ -20,5 +20,10 @@
         android:layout_height="wrap_content" 
         android:text="aidl"
         android:onClick="turnToBookManagerActivity"/>
+     <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:text="socket"
+        android:onClick="turnToBookTcpClientActivity"/>
 
 </LinearLayout>

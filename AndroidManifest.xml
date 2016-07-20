@@ -8,6 +8,8 @@
         android:name="com.example.servicemessagertest.premission.ACCESS_BOOK_SERVICE"
         android:protectionLevel="normal" >
     </permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -37,6 +39,10 @@
             android:name="com.example.servicemessagertest.aidl.BookManagerService"
             android:process=":remote02" >
         </service>
+        <service
+            android:name="com.example.servicemessagertest.socket.TcpServerService"
+            android:process=":remote03" >
+        </service>
 
         <activity
             android:name="com.example.servicemessagertest.messenger.MessengerActivity"
@@ -48,6 +54,10 @@
         </activity>
         <activity
             android:name="com.example.servicemessagertest.contentprovider.ProviderActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.servicemessagertest.socket.TcpClientActivity"
             android:screenOrientation="portrait" >
         </activity>
 
